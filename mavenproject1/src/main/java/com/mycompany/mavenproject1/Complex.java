@@ -45,21 +45,20 @@ public class Complex {
         double subtractedReal = this.real - other.real;
         return new Complex(subtractedReal, subtractedImaginary);
     }
-    
-    public Complex multiply(Complex other){
-        double multipliedImaginary = this.imaginary * other.imaginary;
-        double multipliedReal = this.real * other.real;
-        return new Complex(multipliedReal,multipliedImaginary);
-    }
-    
-    public Complex divide(Complex other){
-        double dividedImaginary = this.imaginary / other.imaginary;
-        double dividedReal = this.real / other.real;
-        return new Complex(dividedImaginary,dividedReal);
-    }
-    
-    public Complex abs(){
-       
+
+    public Complex multiply(Complex other) {
+        double real = (this.real * other.real) - (this.imaginary * other.imaginary);
+        double imaginary = (this.imaginary * other.real) + (this.real + other.imaginary);
+        return new Complex(real, imaginary);
     }
 
+    public Complex divide(Complex other) {
+        double dividedImaginary = ((this.real * other.real) + (this.imaginary * other.imaginary)) + ((this.imaginary * other.real) - (this.real * other.imaginary));
+        double dividedReal = Math.pow(other.real, 2) + Math.pow(other.imaginary, 2);
+        return new Complex(dividedImaginary, dividedReal);
+    }
+
+    public Complex abs() {
+        double real = Math.sqrt(Math.pow(this.real, 2) + Math.pow(this.imaginary, 2));
+        return new Complex(real, 0);
 }
